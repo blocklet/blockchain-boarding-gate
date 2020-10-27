@@ -20,12 +20,12 @@ const walletJSON = wallet.toJSON();
 
 const walletAuth = new WalletAuthenticator({
   wallet: walletJSON,
-  baseUrl: isNetlify ? env.baseUrl.replace(netlifyPrefix, '') : env.baseUrl,
+  baseUrl: isNetlify ? env.baseUrl.replace(netlifyPrefix, '') : '',
   appInfo: ({ baseUrl }) => ({
     name: env.appName,
     description: env.appDescription,
-    icon: `${(env.baseUrl || baseUrl).replace(process.env.BLOCKLET_PORT || '3030', '3000')}/static/images/logo.png`,
-    link: env.baseUrl || baseUrl,
+    icon: `${baseUrl.replace(process.env.BLOCKLET_PORT || '3030', '3000')}/static/images/logo.png`,
+    link: baseUrl,
   }),
   chainInfo: ({ chainId, chainHost }) => {
     return { host: chainHost, id: chainId };
