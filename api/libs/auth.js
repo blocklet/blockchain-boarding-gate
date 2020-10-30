@@ -20,7 +20,6 @@ const walletJSON = wallet.toJSON();
 
 const walletAuth = new WalletAuthenticator({
   wallet: walletJSON,
-  baseUrl: isNetlify ? env.baseUrl.replace(netlifyPrefix, '') : '',
   appInfo: ({ baseUrl }) => ({
     name: env.appName,
     description: env.appDescription,
