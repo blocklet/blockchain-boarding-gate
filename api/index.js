@@ -9,7 +9,7 @@ if (isDevelopment && process.env.ABT_NODE) {
   process.env.BLOCKLET_PORT = 3030;
 }
 
-const port = parseInt(process.env.BLOCKLET_PORT, 10) || 3000;
+const port = parseInt(process.env.BLOCKLET_PORT, 10) || 3030;
 server.listen(port, (err) => {
   if (err) throw err;
   console.log(`> blockchain-boarding-gate ready on ${port}`);
