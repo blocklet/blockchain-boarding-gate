@@ -6,7 +6,7 @@ git config --local user.email "wangshijun2010@gmail.com"
 
 make release
 npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-npm install -g @abtnode/cli
+sudo npm install -g @abtnode/cli
 
 echo "publishing wallet demo blocklet..."
 npm run build
@@ -39,5 +39,5 @@ fi
 
 # trigger ArcBlock/blocklets repo release
 echo "trigger ArcBlock/blocklets repo release"
-gem install travis
+sudo gem install travis
 .makefiles/trigger_registry_build.sh
