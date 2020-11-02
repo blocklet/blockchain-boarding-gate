@@ -12,7 +12,6 @@ make release
 npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
 sudo npm install -g @abtnode/cli
 echo "SKIP_PREFLIGHT_CHECK=true" > ./.env
-npm run build
 npm publish
 
 # deploy to remote ABT Node
