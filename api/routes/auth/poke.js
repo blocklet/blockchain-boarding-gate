@@ -34,7 +34,7 @@ module.exports = {
   onAuth: async ({ claims, userDid, extraParams: { locale, chainId, chainHost } }) => {
     ForgeSDK.connect(chainHost, { chainId, name: chainId });
     try {
-      const claim = claims.find((x) => x.type === 'signature');
+      const claim = claims.find(x => x.type === 'signature');
       const tx = ForgeSDK.decodeTx(multibase.decode(claim.origin), { conn: chainId });
       const wallet = fromAddress(userDid);
       console.log('poke.onAuth.payload', { tx, claim });

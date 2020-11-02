@@ -13,13 +13,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@arcblock/ux/lib/Button';
 import { LocaleContext } from '@arcblock/ux/lib/Locale/context';
-import chains from '../libs/chains';
 import ForgeSDK from '@arcblock/forge-sdk/lite';
+import chains from '../libs/chains';
 
 export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }) {
   const { t } = useContext(LocaleContext);
 
-  let urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(window.location.search);
 
   const { register, handleSubmit, errors, setError, setValue } = useForm({
     defaultValues: {
@@ -29,7 +29,7 @@ export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }
   });
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     setError('');
     setLoading(true);
     try {
@@ -47,10 +47,10 @@ export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }
     }
   };
 
-  const selectOnChange = (event) => {
-    const value = event.target.value;
+  const selectOnChange = event => {
+    const { value } = event.target;
     if (value !== '') {
-      const chain = chains.find((element) => element.name === value);
+      const chain = chains.find(element => element.name === value);
       setValue('name', chain.name);
       setValue('host', chain.endpoint, true);
     } else {
@@ -59,9 +59,9 @@ export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }
     }
   };
 
-  const textFieldOnChange = (event) => {
-    const value = event.target.value;
-    const chain = chains.find((element) => element.endpoint === value);
+  const textFieldOnChange = event => {
+    const { value } = event.target;
+    const chain = chains.find(element => element.endpoint === value);
     if (chain !== undefined) {
       setValue('name', chain.name);
       setValue('host', chain.endpoint, true);
@@ -71,6 +71,7 @@ export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }
   };
 
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <Div className="form-wrapper" {...rest}>
       <form className="form" noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         {!!title && (
@@ -83,7 +84,7 @@ export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }
           <MenuItem value="">
             <em>{t('onboard.form.customHost')}</em>
           </MenuItem>
-          {chains.map((value) => (
+          {chains.map(value => (
             <MenuItem key={value.name} value={value.name}>
               {value.name}
             </MenuItem>
@@ -95,7 +96,7 @@ export default function ConfigForm({ onSaved, title, submit, disabled, ...rest }
           placeholder={t('onboard.form.hostHolder')}
           disabled={loading}
           error={errors.host && !!errors.host.message}
-          inputRef={register({ validate: (value) => !!value.trim() || t('onboard.form.hostRequired') })}
+          inputRef={register({ validate: value => !!value.trim() || t('onboard.form.hostRequired') })}
           helperText={errors.host ? errors.host.message : ''}
           margin="normal"
           autoFocus
@@ -134,7 +135,7 @@ const Div = styled.div`
   align-items: flex-start;
   width: 640px;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.values.md}px) {
+  @media (max-width: ${props => props.theme.breakpoints.values.md}px) {
     width: 100%;
   }
 

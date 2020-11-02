@@ -6,9 +6,6 @@ const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
 const { WalletAuthenticator, WalletHandlers } = require('@arcblock/did-auth');
 const env = require('./env');
 
-const netlifyPrefix = '/.netlify/functions/app';
-const isNetlify = process.env.NETLIFY && JSON.parse(process.env.NETLIFY);
-
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
   pk: Mcrypto.types.KeyType.ED25519,
@@ -26,9 +23,7 @@ const walletAuth = new WalletAuthenticator({
     icon: `${baseUrl.replace(process.env.BLOCKLET_PORT || '3030', '3000')}/static/images/logo.png`,
     link: baseUrl,
   }),
-  chainInfo: ({ chainId, chainHost }) => {
-    return { host: chainHost, id: chainId };
-  },
+  chainInfo: ({ chainId, chainHost }) => ({ host: chainHost, id: chainId }),
 });
 
 const walletHandlers = new WalletHandlers({

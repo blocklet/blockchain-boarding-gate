@@ -44,12 +44,12 @@ function ColorStepIcon({ icon, active, completed }) {
 export default function IndexPage() {
   const { t, locale, changeLocale } = useContext(LocaleContext);
 
-  let urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('__blang__') != null) {
     changeLocale(urlParams.get('__blang__'));
   }
 
-  let defaultActiveStep = 0;
+  const defaultActiveStep = 0;
   const [activeStep, setActiveStep] = useState(defaultActiveStep);
   const [userDid, setUserDid] = useState(null);
   const [chainHost, setChainHost] = useState(null);
@@ -64,7 +64,7 @@ export default function IndexPage() {
   };
 
   const renderLogin = () => {
-    const onLoginSuccess = (result) => {
+    const onLoginSuccess = result => {
       setTimeout(() => {
         setUserDid(result.did);
         setActiveStep(activeStep + 1);
@@ -94,7 +94,7 @@ export default function IndexPage() {
   };
 
   const renderPoke = () => {
-    const onPokeSuccess = (result) => {
+    const onPokeSuccess = () => {
       setTimeout(() => {
         setActiveStep(activeStep + 1);
       }, 1000);
@@ -123,7 +123,7 @@ export default function IndexPage() {
   };
 
   const renderForm = () => {
-    const onSaved = (result) => {
+    const onSaved = result => {
       setTimeout(() => {
         setChainHost(result.chainHost);
         setChainId(result.chainId);
@@ -138,7 +138,7 @@ export default function IndexPage() {
     if (userDid === null || chainHost === null) {
       return;
     }
-    const url = chainHost.replace('/api', '') + '/node/explorer/accounts/' + userDid;
+    const url = `${chainHost.replace('/api', '')}/node/explorer/accounts/${userDid}`;
     window.open(url, '_blank');
   };
   const renderComplete = () => (
@@ -208,7 +208,7 @@ export default function IndexPage() {
 
 const Main = styled.main`
   a {
-    color: ${(props) => props.theme.colors.green};
+    color: ${props => props.theme.colors.green};
     text-decoration: none;
   }
 
@@ -236,7 +236,7 @@ const Main = styled.main`
   .demos {
     .demo {
       height: 240px;
-      @media (max-width: ${(props) => props.theme.breakpoints.values.md - 1}px) {
+      @media (max-width: ${props => props.theme.breakpoints.values.md - 1}px) {
         height: auto;
       }
     }
@@ -277,9 +277,9 @@ const Div = styled(Container)`
       }
 
       .step-icon-w {
-        background-color: ${(props) => props.theme.colors.minor};
+        background-color: ${props => props.theme.colors.minor};
         z-index: 1;
-        color: ${(props) => props.theme.colors.white};
+        color: ${props => props.theme.colors.white};
         width: 50px;
         height: 50px;
         display: flex;
@@ -292,11 +292,11 @@ const Div = styled(Container)`
       }
 
       .step-icon-w--active {
-        background-color: ${(props) => props.theme.colors.blue};
+        background-color: ${props => props.theme.colors.blue};
       }
 
       .step-icon-w--completed {
-        background-color: ${(props) => props.theme.colors.secondary};
+        background-color: ${props => props.theme.colors.secondary};
       }
     }
 

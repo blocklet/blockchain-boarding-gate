@@ -46,8 +46,10 @@ app.use(
 
 const router = express.Router();
 
-handlers.attach(Object.assign({ app: router }, require('../routes/auth/login')));
-handlers.attach(Object.assign({ app: router }, require('../routes/auth/poke')));
+// eslint-disable-next-line global-require
+handlers.attach({ app: router, ...require('../routes/auth/login') });
+// eslint-disable-next-line global-require
+handlers.attach({ app: router, ...require('../routes/auth/poke') });
 require('../routes/session').init(router);
 
 if (isProduction) {
