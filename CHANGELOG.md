@@ -1,3 +1,7 @@
+## 1.1.1 (November 12, 2020)
+
+
+
 ## 1.1.0 (November 11, 2020)
 
 - chore: update publish script
