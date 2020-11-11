@@ -11,7 +11,7 @@ init: install dep
 
 install:
 	@echo "Install software required for this repo..."
-	@npm install -g yarn
+	@npm install -g yarn @abtnode/cli
 
 dep:
 	@echo "Install dependencies required for this repo..."

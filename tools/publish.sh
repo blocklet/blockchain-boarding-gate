@@ -6,11 +6,9 @@ echo "publish version ${VERSION}"
 git config --local user.name "wangshijun"
 git config --local user.email "wangshijun2010@gmail.com"
 
-
 echo "publishing to npm..."
 make release
 npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-sudo npm install -g @abtnode/cli
 echo "SKIP_PREFLIGHT_CHECK=true" > ./.env
 npm publish
 
