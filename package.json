@@ -1,14 +1,14 @@
 {
   "name": "blockchain-boarding-gate",
   "title": "Blockchain Boarding Gate",
-  "version": "1.0.22",
+  "version": "1.1.1",
   "description": "A simple blocklet that helps you onboarding users to your blockchain",
   "keywords": [
     "dapp",
     "forge"
   ],
   "publishConfig": {
-    "directory": "_blocklet/"
+    "directory": ".blocklet/bundle"
   },
   "files": [
     "api/",
@@ -77,13 +77,13 @@
     "start:client": "PUBLIC_URL=\"\" react-app-rewired start",
     "start:server": "nodemon api/index.js -w api",
     "build": "yarn clean && npm-run-all build:*",
-    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f _blocklet/build/static/**/*.{js,css}.map",
+    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f .blocklet/bundle/build/static/**/*.{js,css}.map",
     "build:server": "netlify-lambda build api/functions",
     "bundle": "yarn clean && npm-run-all bundle:*",
     "bundle:client": "REACT_APP_API_PREFIX=\"\" REACT_APP_APP_NAME=\"Blockchain Boarding Gate\" yarn build:client",
     "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js",
     "bundle-server": "DEBUG=@abtnode/* NODE_ENV=development abtnode bundle -w api/webpack.blocklet.js",
-    "prepublishOnly": "npm run bundle && rm -f _blocklet/build/**/**/*.js.map",
+    "prepublishOnly": "npm run bundle && rm -f .blocklet/bundle/build/**/**/*.js.map",
     "test": "react-app-rewired test --env=jsdom --passWithNoTests",
     "eject": "react-app-rewired eject"
   },
@@ -114,27 +114,6 @@
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "react-app-rewired": "^2.1.6"
-  },
-  "blocklet": {
-    "group": "dapp",
-    "color": "primary",
-    "main": "api/index.js",
-    "logo": "logo.png",
-    "provider": "arcblock",
-    "support": "support@arcblock.io",
-    "community": "https://community.arcblockio.cn",
-    "config_url": "",
-    "public_url": "/",
-    "admin_url": "",
-    "doc_url": "",
-    "install-scripts": {},
-    "hooks": {
-      "pre-deploy": "npm run bundle"
-    },
-    "hookFiles": [],
-    "scripts": {
-      "dev": "npm run start"
-    }
   },
   "license": "Apache-2.0"
 }
