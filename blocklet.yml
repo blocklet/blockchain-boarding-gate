@@ -1,33 +1,33 @@
 name: blockchain-boarding-gate
 description: A simple blocklet that helps you onboarding users to your blockchain
 group: dapp
-version: 1.1.1
+version: 1.1.2
 main: api/index.js
 title: Blockchain Boarding Gate
-publicUrl: /
-adminUrl: ''
-configUrl: ''
-docUrl: ''
 logo: logo.png
-author: 'Jonathan Lu <awesome@jonathan.lu> https://github.com/jonathanlu813'
-charging:
-  price: 0
-color: primary
+author:
+  name: Jonathan Lu
+  email: awesome@jonathan.lu
 community: 'https://community.arcblockio.cn'
+documentation: ''
+homepage: ''
 keywords:
   - dapp
   - forge
+screenshots: []
 repository:
   type: git
   url: >-
     https://github.com/ArcBlock/abt-node/tree/master/blocklets/blockchain-boarding-gate
 support: support@arcblock.io
-hooks:
-  pre-deploy: npm run bundle
-hookFiles: []
+environments: []
+scripts:
+  preDeploy: npm run bundle
+  dev: npm run start
+specVersion: 1.0.1
+color: primary
 capabilities:
   dynamicPathPrefix: true
-scripts:
-  dev: npm run start
-specVersion: 1.0.0
+charging:
+  price: 0
 did: z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn

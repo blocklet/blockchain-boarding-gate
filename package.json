@@ -1,7 +1,7 @@
 {
   "name": "blockchain-boarding-gate",
   "title": "Blockchain Boarding Gate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple blocklet that helps you onboarding users to your blockchain",
   "keywords": [
     "dapp",
@@ -72,7 +72,7 @@
     "lint": "eslint src api",
     "precommit": "yarn lint",
     "prepush": "yarn lint",
-    "clean": "rm -rf build api/dist",
+    "clean": "rm -rf build api/dist .blocklet",
     "start": "npm-run-all --parallel start:*",
     "start:client": "PUBLIC_URL=\"\" react-app-rewired start",
     "start:server": "nodemon api/index.js -w api",
@@ -81,8 +81,10 @@
     "build:server": "netlify-lambda build api/functions",
     "bundle": "yarn clean && npm-run-all bundle:*",
     "bundle:client": "REACT_APP_API_PREFIX=\"\" REACT_APP_APP_NAME=\"Blockchain Boarding Gate\" yarn build:client",
-    "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js",
+    "bundle:server": "NODE_ENV=production an bundle -w api/webpack.blocklet.js  --create-release",
     "bundle-server": "DEBUG=@abtnode/* NODE_ENV=development abtnode bundle -w api/webpack.blocklet.js",
+    "release": "npm run clean && npm run bundle",
+    "deploy": "npm run release && an deploy .blocklet/bundle --skip-hooks",
     "prepublishOnly": "npm run bundle && rm -f .blocklet/bundle/build/**/**/*.js.map",
     "test": "react-app-rewired test --env=jsdom --passWithNoTests",
     "eject": "react-app-rewired eject"
