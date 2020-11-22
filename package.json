@@ -7,15 +7,11 @@
     "dapp",
     "forge"
   ],
-  "publishConfig": {
-    "directory": ".blocklet/bundle"
-  },
   "files": [
-    "api/",
     "build",
     "screenshots",
     "logo.png",
-    "blocklet.json",
+    "blocklet.yml",
     "blocklet.md",
     "blocklet.js",
     "README.md"
@@ -77,15 +73,14 @@
     "start:client": "PUBLIC_URL=\"\" react-app-rewired start",
     "start:server": "nodemon api/index.js -w api",
     "build": "yarn clean && npm-run-all build:*",
-    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f .blocklet/bundle/build/static/**/*.{js,css}.map",
+    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f build/static/**/*.{js,css}.map",
     "build:server": "netlify-lambda build api/functions",
-    "bundle": "yarn clean && npm-run-all bundle:*",
+    "bundle": "yarn clean && npm run bundle:client && npm run bundle:server",
     "bundle:client": "REACT_APP_API_PREFIX=\"\" REACT_APP_APP_NAME=\"Blockchain Boarding Gate\" yarn build:client",
     "bundle:server": "NODE_ENV=production an bundle -w api/webpack.blocklet.js  --create-release",
-    "bundle-server": "DEBUG=@abtnode/* NODE_ENV=development abtnode bundle -w api/webpack.blocklet.js",
     "release": "npm run clean && npm run bundle",
-    "deploy": "npm run release && an deploy .blocklet/bundle --skip-hooks",
-    "prepublishOnly": "npm run bundle && rm -f .blocklet/bundle/build/**/**/*.js.map",
+    "deploy": "npm run release && an deploy .blocklet/bundle",
+    "prepublishOnly": "npm run bundle &&",
     "test": "react-app-rewired test --env=jsdom --passWithNoTests",
     "eject": "react-app-rewired eject"
   },
