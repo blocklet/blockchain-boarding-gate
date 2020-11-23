@@ -80,7 +80,6 @@
     "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js  --create-release",
     "release": "npm run clean && npm run bundle",
     "deploy": "npm run release && abtnode deploy .blocklet/bundle",
-    "prepublishOnly": "npm run bundle &&",
     "test": "react-app-rewired test --env=jsdom --passWithNoTests",
     "eject": "react-app-rewired eject"
   },
