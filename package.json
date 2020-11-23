@@ -77,9 +77,9 @@
     "build:server": "netlify-lambda build api/functions",
     "bundle": "yarn clean && npm run bundle:client && npm run bundle:server",
     "bundle:client": "REACT_APP_API_PREFIX=\"\" REACT_APP_APP_NAME=\"Blockchain Boarding Gate\" yarn build:client",
-    "bundle:server": "NODE_ENV=production an bundle -w api/webpack.blocklet.js  --create-release",
+    "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js  --create-release",
     "release": "npm run clean && npm run bundle",
-    "deploy": "npm run release && an deploy .blocklet/bundle",
+    "deploy": "npm run release && abtnode deploy .blocklet/bundle",
     "prepublishOnly": "npm run bundle &&",
     "test": "react-app-rewired test --env=jsdom --passWithNoTests",
     "eject": "react-app-rewired eject"
