@@ -1,22 +1,33 @@
-did: z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn
 name: blockchain-boarding-gate
-description: A simple blocklet that helps you onboarding users to your blockchain
-group: dapp
-version: 1.1.2
-main: api/index.js
 title: Blockchain Boarding Gate
-logo: logo.png
-author:
-  name: Jonathan Lu
-  email: awesome@jonathan.lu
-community: 'https://community.arcblockio.cn'
-documentation: ''
-homepage: ''
+version: 1.1.3
+description: A simple blocklet that helps you onboarding users to your blockchain
 keywords:
   - dapp
   - forge
+files:
+  - build
+  - screenshots
+  - logo.png
+  - blocklet.yml
+  - blocklet.md
+  - blocklet.js
+  - README.md
+author:
+  name: Jonathan Lu
+  email: awesome@jonathan.lu
+repository:
+  type: git
+  url: 'git+https://github.com/blocklet/blockchain-boarding-gate.git'
+license: Apache-2.0
+did: z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn
+group: dapp
+main: api/index.js
+logo: logo.png
+community: 'https://community.arcblockio.cn'
+documentation: ''
+homepage: ''
 screenshots: []
-repository: blocklet/blockchain-boarding-gate
 support: support@arcblock.io
 environments: []
 scripts:
@@ -25,7 +36,9 @@ specVersion: 1.0.1
 interfaces:
   - name: publicUrl
     type: web
-    path: '/'
+    path: /
     prefix: '*'
     protocol: tcp
     port: BLOCKLET_PORT
+timeout:
+  start: 10
