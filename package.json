@@ -1,21 +1,17 @@
 {
   "name": "blockchain-boarding-gate",
   "title": "Blockchain Boarding Gate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple blocklet that helps you onboarding users to your blockchain",
   "keywords": [
     "dapp",
     "forge"
   ],
-  "publishConfig": {
-    "directory": ".blocklet/bundle"
-  },
   "files": [
-    "api/",
     "build",
     "screenshots",
     "logo.png",
-    "blocklet.json",
+    "blocklet.yml",
     "blocklet.md",
     "blocklet.js",
     "README.md"
@@ -72,18 +68,18 @@
     "lint": "eslint src api",
     "precommit": "yarn lint",
     "prepush": "yarn lint",
-    "clean": "rm -rf build api/dist",
+    "clean": "rm -rf build api/dist .blocklet",
     "start": "npm-run-all --parallel start:*",
     "start:client": "PUBLIC_URL=\"\" react-app-rewired start",
     "start:server": "nodemon api/index.js -w api",
     "build": "yarn clean && npm-run-all build:*",
-    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f .blocklet/bundle/build/static/**/*.{js,css}.map",
+    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f build/static/**/*.{js,css}.map",
     "build:server": "netlify-lambda build api/functions",
-    "bundle": "yarn clean && npm-run-all bundle:*",
+    "bundle": "yarn clean && npm run bundle:client && npm run bundle:server",
     "bundle:client": "REACT_APP_API_PREFIX=\"\" REACT_APP_APP_NAME=\"Blockchain Boarding Gate\" yarn build:client",
-    "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js",
-    "bundle-server": "DEBUG=@abtnode/* NODE_ENV=development abtnode bundle -w api/webpack.blocklet.js",
-    "prepublishOnly": "npm run bundle && rm -f .blocklet/bundle/build/**/**/*.js.map",
+    "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js  --create-release",
+    "release": "npm run clean && npm run bundle",
+    "deploy": "npm run release && abtnode deploy .blocklet/bundle",
     "test": "react-app-rewired test --env=jsdom --passWithNoTests",
     "eject": "react-app-rewired eject"
   },
