@@ -1,6 +1,6 @@
 name: blockchain-boarding-gate
 title: Blockchain Boarding Gate
-version: 1.1.5
+version: 1.1.6
 description: A simple blocklet that helps you onboarding users to your blockchain
 keywords:
   - dapp
@@ -42,3 +42,8 @@ interfaces:
     port: BLOCKLET_PORT
 timeout:
   start: 10
+requirements:
+  abtnode: '>=1.1.0'
+  os: '*'
+  cpu: '*'
+children: []

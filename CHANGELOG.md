@@ -1,3 +1,7 @@
+## 1.1.6 (March 24, 2021)
+
+- build: update the prefix of static resource url
+
 ## 1.1.5 (January 14, 2021)
 
 - feat: support publish to blocklet registry

@@ -1,7 +1,7 @@
 {
   "name": "blockchain-boarding-gate",
   "title": "Blockchain Boarding Gate",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A simple blocklet that helps you onboarding users to your blockchain",
   "keywords": [
     "dapp",
@@ -73,7 +73,7 @@
     "start:client": "PUBLIC_URL=\"\" react-app-rewired start",
     "start:server": "nodemon api/index.js -w api",
     "build": "yarn clean && npm-run-all build:*",
-    "build:client": "PUBLIC_URL=\"/z8ia1C4xp1vVwH2VpAhkyknR4gSZBfXemJBZn\" react-app-rewired build && rm -f build/static/**/*.{js,css}.map",
+    "build:client": "PUBLIC_URL=\"/.blocklet/proxy\" react-app-rewired build && rm -f build/static/**/*.{js,css}.map",
     "build:server": "netlify-lambda build api/functions",
     "bundle": "yarn clean && npm run bundle:client && npm run bundle:server",
     "bundle:client": "REACT_APP_API_PREFIX=\"\" REACT_APP_APP_NAME=\"Blockchain Boarding Gate\" yarn build:client",
